@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* ENCABEZADO Y HERO */
+        header {
+            background: #8b0000; /* Rojo oscuro carnicería */
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+.texto-header {
+    text-align: center; /* Esto centra tanto el h1 como el p */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Asegura el centrado si hay anchos distintos */
+}
+.header-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra todo el conjunto en la pantalla */
+    gap: 20px;               /* Espacio entre el logo y el texto */
+}
+
+/* Tamaño y forma del logo */
+.logo-img {
+    width: 120px;              /* Ajusta el tamaño aquí */
+    height: 120px;             /* Debe ser igual al ancho para que sea un círculo */
+    object-fit: cover;        /* Esto evita que la imagen se estire si no es cuadrada */
+    border-radius: 50%;       /* Este es el truco para hacerlo circular */
+    border: 3px solid white;  /* Un borde blanco para que resalte sobre el rojo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Una sombra suave para darle relieve */
+}
+
+/* Ajuste para el texto del header */
+.texto-header {
+    text-align: left;        /* El texto se alinea a la izquierda del logo */
+}
+
+/* Ajuste para móviles: si la pantalla es chica, se ponen uno arriba del otro */
+@media (max-width: 600px) {
+    .header-contenido {
+        flex-direction: column;
+        text-align: center;
+    }
+    .texto-header {
+        text-align: center;
+    }
+}
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #444;
+            border-bottom: 3px solid #8b0000;
+            display: inline-block;
+            width: auto;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
+            padding-bottom: 5px;
+        }
+
+        /* GRILLA DE PRODUCTOS */
+      .categoria-titulo {
+    background: #b10606;
+    color: white;
+    padding: 10px 20px;
+    margin: 40px 0 20px 0; /* Espacio arriba y abajo */
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+/* Para que los grupos de tarjetas no queden pegados */
+.contenedor-cortes {
+    margin-bottom: 50px; 
+}
+        .tarjeta-corte {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tarjeta-corte:hover {
+            transform: translateY(-5px);
+        }
+
+        .tarjeta-corte img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .info h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .precio {
+            font-size: 1.8rem;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .precio small {
+            font-size: 0.9rem;
+            color: #777;
+        }
+/* 1. Contenedor Principal (Estilo Cartelera) */
+.promos {
+    background-color: #c5031d; /* Fondo oscuro sólido */
+    padding: 2rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    border: 4px solid #000000; /* Borde naranja oscuro */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.promos-contenido {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 2. Imagen (Limpia, sin bordes pesados) */
+.promo-imagen img {
+    max-width: 350px;
+    height: auto;
+    border-radius: 15px;
+    background: rgb(90, 40, 40); /* Fondo blanco para que resalte la carne */
+    padding: 15px;
+}
+
+/* 3. Bloque de Texto */
+.promo-texto {
+    flex: 2; /* Le damos más espacio al texto que a la imagen */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.linea-divisoria {
+    width: 100%;
+    height: 2px;
+    background-color: #d35400;
+    margin: 10px 0;
+}
+
+/* Título: PROMOS IMPERDIBLES */
+.animar-titulo {
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    color: #e9d2d2;
+    margin: 0;
+    white-space: nowrap;
+    
+    /* ESTO ACTIVA EL TITILEO */
+    animation: titileo 1s infinite; 
+}
+
+/* Definición del movimiento del titileo */
+@keyframes titileo {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Línea divisoria como la de la foto */
+.promo-subtitulo {
+    font-family: 'Archivo Black', sans-serif;
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+/* Subtítulo: NOMBRE DEL CORTE */
+.promo-subtitulo {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    margin: 5px 0;
+}
+
+/* Precio: Fondo amarillo, letras negras */
+.promo-item {
+    background-color: #f70929;
+    color: #000;
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    padding: 8px 25px;
+    font-size: 1.8rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+/* --- AGREGAR ESTO AL FINAL DEL ARCHIVO --- */
+
+@media (max-width: 768px) {
+    .promos {
+        padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .promos-contenido {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        gap: 20px;
+        text-align: center;
+    }
+
+    .promo-imagen img {
+        max-width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .promo-texto {
+        width: 100%;
+        padding: 0;
+    }
+
+    .animar-titulo {
+        font-size: 1.5rem;
+        white-space: normal; /* Permite que el texto baje si no entra en una línea */
+        line-height: 1.2;
+    }
+
+    .promo-subtitulo {
+        font-size: 1.8rem;
+        margin: 10px 0;
+    }
+
+    .promo-item {
+        font-size: 1.4rem;
+        padding: 10px 15px;
+        width: 90%;
+        display: inline-block;
+    }
+
+    .linea-divisoria {
+        width: 80%;
+        margin: 10px auto;
+    }
+}
+
+        /* SUCURSALES Y CONTACTO */
+        .sucursales {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background: #490c0c;
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .sucursal-card h3 {
+            color: #e6e6e6;
+            margin-bottom: 10px;
+        }
+
+        /* BOTÓN WHATSAPP */
+        .btn-whatsapp {
+            display: block;
+            width: fit-content;
+            margin: 2rem auto;
+            background: #25d366;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-whatsapp:hover {
+            background: #128c7e;
+        }
+/* --- CORRECCIÓN DE LA GRILLA --- */
+
+.contenedor-cortes {
+    display: grid !important; /* Forzamos el uso de Grid */
+    /* Crea columnas automáticas de mínimo 280px */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 25px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+/* Forzamos que los títulos de categoría ocupen toda la línea y no se metan en la grilla */
+.categoria-titulo {
+    display: block; 
+    width: 100%; 
+    max-width: fit-content;
+    text-align: left;
+    margin: 40px 0 20px 0;
+}
+
+/* Aseguramos que las tarjetas mantengan su forma de columna interna */
+.tarjeta-corte {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Para que todas midan lo mismo */
+}

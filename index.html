@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnicería Gerardo - Precios y Ofertas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="header-contenido">
+            <img src="logo.jpeg" alt="Logo" class="logo-img">
+            <div class="texto-header">
+                <h1>Carnicería "GERARDO"</h1>
+                <p>La mejor calidad de la zona</p>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="promos" id="contenedor-promo-dinamica"></section>
+
+        <section id="precios">
+            <h2>Nuestros Cortes</h2>
+
+            <h3 class="categoria-titulo">🥩 CARNE VACUNA</h3>
+            <div id="contenedor-VACUNA" class="contenedor-cortes"></div>
+
+            <h3 class="categoria-titulo">🐷 CERDO</h3>
+            <div id="contenedor-CERDO" class="contenedor-cortes"></div>
+
+            <h3 class="categoria-titulo">🍗 POLLO</h3>
+            <div id="contenedor-POLLO" class="contenedor-cortes"></div>
+
+            <h3 class="categoria-titulo">🔥 ACHURAS</h3>
+            <div id="contenedor-ACHURAS" class="contenedor-cortes"></div>
+        </section>
+
+        <a href="https://api.whatsapp.com/send/?phone=543364323463&text=Hola%2C+me+gustar%C3%ADa+hacerte+un+pedido..&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank">Pedir por WhatsApp</a>
+
+        <h2 class="titulo-sucursales">Nuestras Sucursales</h2>
+        <section class="sucursales">
+            <div class="sucursal-card">
+                <h3>SUCURSAL VIALE</h3>
+                <p>📍 Luis viale 311</p>
+                <p>📞 3364323460</p>
+                <p>⏰ Lun a Sáb: 08:00 a 13 y 17:00 a 21:00</p>
+                <p>⏰ Domingos: 9:00 a 13:00</p>
+            </div>
+            <div class="sucursal-card">
+                <h3>SUCURSAL CENTRO</h3>
+                <p>📍 Chacabuco 137</p>
+                <p>📞 3364323460</p>
+                <p>⏰ Lun a Sáb: 08:00 a 13 y 17:00 a 21:00</p>
+            </div>
+            <div class="sucursal-card">
+                <h3>SUCURSAL REYNOSO</h3>
+                <p>📍 Reynoso 634</p>
+                <p>📞 3364323460</p>
+                <p>⏰ Lun a Sáb: 08:00 a 13 y 17:00 a 21:00</p>
+                <p>⏰ Domingos: 9:00 a 13:00</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Carnicería Gerardo - Todos los derechos reservados</p>
+    </footer>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script>
+    const CORTES_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5dxZbiVheYS513lgEdU3EzUamnVxoXVTGI2BVRtWdCdiLSqPdX9NYrCYYKXrziBYShVh2OBqPdw0b/pub?gid=0&single=true&output=csv'; 
+    const PROMOS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5dxZbiVheYS513lgEdU3EzUamnVxoXVTGI2BVRtWdCdiLSqPdX9NYrCYYKXrziBYShVh2OBqPdw0b/pub?gid=1137698063&single=true&output=csv';
+
+    function cargarPromos() {
+        Papa.parse(PROMOS_URL, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                const p = results.data[0]; 
+                const contenedor = document.getElementById('contenedor-promo-dinamica');
+                if (p && p.titulo) {
+                    contenedor.innerHTML = `
+    <div class="promos-contenido">
+        <div class="promo-imagen">
+            <img src="${p.imagen}" alt="${p.alt}">
+        </div>
+        <div class="promo-texto">
+            <h2 class="animar-titulo">🔥 ${p.titulo} 🔥</h2>
+            <p class="promo-subtitulo">${p.subtitulo}</p>
+            <span class="promo-item">${p.descripcion}</span>
+        </div>
+    </div>
+`;
+                }
+            }
+        });
+    }
+
+    function cargarCortes() {
+        Papa.parse(CORTES_URL, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                results.data.forEach(corte => {
+                    const contenedor = document.getElementById(`contenedor-${corte.categoria}`);
+                    if (contenedor) {
+                        contenedor.innerHTML += `
+                            <div class="tarjeta-corte">
+                                <img src="${corte.imagen}" alt="${corte.nombre}">
+                                <div class="info">
+                                    <h3>${corte.nombre}</h3>
+                                    <p class="precio">$${corte.precio} <small>x kg</small></p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+        });
+    }
+
+    window.onload = function() {
+        cargarCortes();
+        cargarPromos();
+    };
+</script>
+</body>
+</html>
